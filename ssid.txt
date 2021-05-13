@@ -1,12 +1,13 @@
 // ==UserScript==
-// @name         全国图书馆联盟图书下载
-// @namespace    http://tampermonkey.net/
+// @name         文献互助获取ssid编码
+// @namespace    book.ucdrs
 // @version      0.1
-// @description  try to take over the world!
 // @author       You
 // @match        *://book.ucdrs.superlib.net/views/specific/*
 // @match        *://book.ucdrs.superlib.net/search*
 // @require      https://libs.baidu.com/jquery/2.0.0/jquery.min.js
+// @copyright		wxhzssid
+// @description  显示ssid，增加获取途径。
 // @grant        none
 // ==/UserScript==
 

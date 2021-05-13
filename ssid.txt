@@ -1,0 +1,37 @@
+// ==UserScript==
+// @name         全国图书馆联盟图书下载
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        *://book.ucdrs.superlib.net/views/specific/*
+// @match        *://book.ucdrs.superlib.net/search*
+// @require      https://libs.baidu.com/jquery/2.0.0/jquery.min.js
+// @grant        none
+// ==/UserScript==
+
+
+
+const BookQueryUrl='http://121.5.69.234:8088/seach?sscx=';
+
+
+mainTask();
+function mainTask(){
+
+    if(location.href.includes('/views/specific/')){
+         let m=$('script:contains(send_requestajax)').text().match(/ssn=(\d{3,})/);
+         $('div.tubookimg>img:only-child,td[id="b_img"]').after(getAddBtn(m?m[1]:0));
+    }else if(location.href.includes('/search')){
+        $('td[id="b_img"]').each((i,el)=>{
+            let ssid=$(el).parent('tr').find('input[name*="ssid"]').val();
+            $(el).after(getAddBtn(ssid));
+        });
+    }
+}
+
+
+function getAddBtn(ssid){
+ return `<p style="font-family: Verdana; color: red; font-size: 15px; font-weight: bold; text-align: center; margin-top: 5px; margin-bottom: 5px;">${ssid}</p>
+<p style="text-align: center;"><a href="${BookQueryUrl}${ssid}" target="_blank" style="color: green; font-size: 15px; font-weight: bold; text-decoration: none;">图书互助</a>
+</p>`;
+}
